@@ -4,9 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
    <mapper namespace="com.iu.s1.board.notice.NoticeMapper">
-   		<select id="getList" resultType="NoticeVO" parameterType="Pager">
-			select * from notice
-			<where>
+   		<sql id="searcher">
+   		<!-- 공통으로 사용하는 sql문 -->
+   		<where>
 				<choose>
 					<when test="kind=='Writer'">
 						writer like concat('%', #{search}, '%')
@@ -21,6 +21,12 @@
 					</otherwise>
 				</choose>
 			</where>
+   		</sql>
+   		
+   		
+   		<select id="getList" resultType="NoticeVO" parameterType="Pager">
+			select * from notice
+			<include refid="searcher"></include>
 			order by num desc
 			limit #{startRow}, #{perPage}
 			<!-- limit 시작index번호(0부터시작), 갯수 --> 
@@ -28,6 +34,7 @@
    		
    		<select id="getTotalCount" parameterType="Pager" resultType="java.lang.Long">
    			select count(num) from notice
+   			<include refid="searcher"></include>
    		</select>
    		
    		<select id="getSelect" resultType="NoticeVO" parameterType="BoardVO">
