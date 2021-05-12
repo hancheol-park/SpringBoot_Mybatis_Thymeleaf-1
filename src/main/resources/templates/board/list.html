@@ -60,8 +60,16 @@
 	<div class="container d-flex justify-content-center">
 		  <ul class="pagination">
 		  
+		  	<li th:classappend="${pager.pre? 'disable':'active'}"  class="page-item">
+		  		<a th:if="${pager.pre}" class="page-link" href="#" th:href="@{./list(curPage=${pager.startNum-1})}">Previous</a>
+		  		<!-- if else ==> if unless 
+		  			 unless 사용시에도 조건식은 사용
+		  			 if문에 사용한 조건식과동일한 조건식 사용
+		  		-->
+		  		<span th:unless="${pager.pre}" class="page-link">Previous</span>
+		  	</li>
 		    <li class="page-item" th:each="i : ${#numbers.sequence(pager.startNum, pager.lastNum)}"><a class="page-link" href="#" th:text="${i}" th:href="@{./list(curPage=${i})}" >Previous</a></li>
-		    
+		    <li th:if="${pager.next}" class="page-item"><a class="page-link" href="#" th:href="@{./list(curPage=${pager.lastNum+1})}">Next</a></li>
 		  </ul>
 	</div>
 	
