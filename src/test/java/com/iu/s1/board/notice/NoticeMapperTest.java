@@ -32,7 +32,7 @@ class NoticeMapperTest {
 	@Test
 	void getListTest() throws Exception {
 		
-		List<BoardVO> ar = noticeMapper.getList();
+		List<BoardVO> ar = noticeMapper.getList(null);
 		
 		for(BoardVO boardVO:ar) {
 			System.out.println(boardVO.toString());

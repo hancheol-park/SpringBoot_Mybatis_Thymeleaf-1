@@ -5,7 +5,23 @@
     
    <mapper namespace="com.iu.s1.board.notice.NoticeMapper">
    		<select id="getList" resultType="NoticeVO" parameterType="Pager">
-			select * from notice order by num desc
+			select * from notice
+			<where>
+				<choose>
+					<when test="kind=='Writer'">
+						writer like concat('%', #{search}, '%')
+					</when>
+					
+					<when test="kind=='contents'">
+						contents like concat('%', #{search}, '%')
+					</when>
+					
+					<otherwise>
+						title like concat('%', #{search}, '%')
+					</otherwise>
+				</choose>
+			</where>
+			order by num desc
 			limit #{startRow}, #{perPage}
 			<!-- limit 시작index번호(0부터시작), 갯수 --> 
    		</select>
