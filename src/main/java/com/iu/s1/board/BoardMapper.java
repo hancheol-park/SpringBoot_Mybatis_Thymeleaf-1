@@ -2,10 +2,12 @@ package com.iu.s1.board;
 
 import java.util.List;
 
+import com.iu.s1.util.Pager;
+
 public interface BoardMapper {
 	
 	//List
-	public List<BoardVO> getList()throws Exception;
+	public List<BoardVO> getList(Pager pager)throws Exception;
 	//count
 	public Long getTotalCount()throws Exception;
 	//Select
