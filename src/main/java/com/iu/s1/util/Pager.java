@@ -24,7 +24,7 @@ public class Pager {
 		
 		//2. totalCount를 이용해서 totalPage수 구하기
 		Long totalPage = totalCount/this.getPerPage();
-		if(totalCount%this.getCurPage() != 0) {
+		if(totalCount%this.getPerPage() != 0) {
 			totalPage++;
 		}
 		//3. totalPage를 이용해서 totalBlock 수 구하기
@@ -42,7 +42,7 @@ public class Pager {
 		//5. curBlock를 이용해서 startNum, lastNum 구하기
 		this.startNum=(curBlock-1)*perBlock+1;
 		this.lastNum=curBlock*perBlock;
-		
+
 		//6. curBlock이 마지막(totalBlock)
 		this.pre=true;
 		this.next=true;
