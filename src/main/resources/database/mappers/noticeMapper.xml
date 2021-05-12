@@ -6,6 +6,8 @@
    <mapper namespace="com.iu.s1.board.notice.NoticeMapper">
    		<select id="getList" resultType="NoticeVO">
 			select * from notice order by num desc
+			limit 10, 10
+			<!-- limit 시작index번호(0부터시작), 갯수 --> 
    		</select>
    		<select id="getSelect" resultType="NoticeVO" parameterType="BoardVO">
    			select * from notice where num=#{num}
