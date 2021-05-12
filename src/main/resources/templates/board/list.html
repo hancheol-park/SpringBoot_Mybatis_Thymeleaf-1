@@ -52,7 +52,16 @@
 		   </tbody>
 		 </table> 
 		 
+		 
+		 
 		 <a href="#" class="btn btn-primary" th:href="@{./insert}">WRITE</a>
+	</div>
+	
+	<div class="container d-flex justify-content-center">
+		  <ul class="pagination">
+		  
+		    <li class="page-item" th:each="i : ${#numbers.sequence(pager.startNum, pager.lastNum)}"><a class="page-link" href="#" th:text="${i}" >Previous</a></li>
+		  </ul>
 	</div>
 	
 	<!-- footer -->

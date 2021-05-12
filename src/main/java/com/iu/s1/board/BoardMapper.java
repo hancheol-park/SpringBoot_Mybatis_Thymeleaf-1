@@ -9,7 +9,7 @@ public interface BoardMapper {
 	//List
 	public List<BoardVO> getList(Pager pager)throws Exception;
 	//count
-	public Long getTotalCount()throws Exception;
+	public Long getTotalCount(Pager pager)throws Exception;
 	//Select
 	public BoardVO getSelect(BoardVO boardVO)throws Exception;
 	//Insert

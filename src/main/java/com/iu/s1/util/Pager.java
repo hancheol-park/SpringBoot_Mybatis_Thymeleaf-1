@@ -36,8 +36,8 @@ public class Pager {
 		}
 		
 		//5. curBlock를 이용해서 startNum, lastNum 구하기
-		Long startNum=(curBlock-1)*perBlock+1;
-		Long lastNum=curBlock*perBlock;
+		this.startNum=(curBlock-1)*perBlock+1;
+		this.lastNum=curBlock*perBlock;
 		
 		//6. curBlock이 마지막(totalBlock)
 		this.pre=true;

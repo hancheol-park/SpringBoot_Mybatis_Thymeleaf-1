@@ -19,6 +19,8 @@ public class NoticeService implements BoardService {
 	public List<BoardVO> getList(Pager pager) throws Exception {
 		// TODO Auto-generated method stub
 		pager.makeRow();
+		Long totalCount = noticeMapper.getTotalCount(pager);
+		pager.makeNum(totalCount);
 		return noticeMapper.getList(pager);
 	}
 
