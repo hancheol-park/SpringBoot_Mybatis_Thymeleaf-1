@@ -11,7 +11,7 @@
 <div class="container">
 	<div th:fragment="form (act)">
 	<h1>Board Insert</h1>
-	<form id="frm" action="#" th:action="@{${act}}" method="post">
+	<form id="frm" action="#" th:action="@{${act}}" method="post" enctype="multipart/form-data">
 				<input type="hidden" name="num" th:value="${vo.num}">
 				
 				<div class="form-group">
@@ -28,7 +28,13 @@
 					<textarea class="form-control myCheck" th:text="${vo.contents}" rows="5" id="contents" 
 						name="contents"></textarea>
 				</div>
-	
+				
+				<div>
+					<input type="file" name="files">
+					<input type="file" name="files">
+				</div>
+				
+				
 				<div>
 					<button type="submit" class="btn btn-outline-primary" th:text="${act}">Update</button>
 				</div>

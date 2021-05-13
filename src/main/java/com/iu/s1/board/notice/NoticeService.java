@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.s1.board.BoardService;
 import com.iu.s1.board.BoardVO;
@@ -32,7 +33,7 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setInsert(BoardVO boardVO) throws Exception {
+	public int setInsert(BoardVO boardVO, MultipartFile [] files) throws Exception {
 		// TODO Auto-generated method stub
 		return noticeMapper.setInsert(boardVO);
 	}
