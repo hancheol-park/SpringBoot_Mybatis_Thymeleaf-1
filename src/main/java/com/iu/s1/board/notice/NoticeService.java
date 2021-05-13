@@ -40,7 +40,13 @@ public class NoticeService implements BoardService {
 		// TODO Auto-generated method stub
 		String filePath= "upload/notice/";
 		
-		fileManager.save(null, filePath);
+		for(MultipartFile multipartFile:files) {
+			if(multipartFile.getSize()==0) {
+				continue;
+			}
+			String fileName= fileManager.save(multipartFile, filePath);
+			System.out.println(fileName);
+		}
 		
 		
 		
