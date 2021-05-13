@@ -60,5 +60,29 @@ public class NoticeController {
 		return "redirect:./list";
 	}
 	
+	@GetMapping("update")
+	public String setUpdate(BoardVO boardVO, Model model)throws Exception{
+		boardVO = noticeService.getSelect(boardVO);
+		model.addAttribute("vo", boardVO);
+		return "board/update";
+		
+	}
+	
+	@PostMapping("update")
+	public String setUpdate(BoardVO boardVO)throws Exception{
+		
+		int result = noticeService.setUpdate(boardVO);
+		
+		return "redirect:./list";
+	}
+	
+	@GetMapping("delete")
+	public String setDelete(BoardVO boardVO)throws Exception{
+		
+		int result = noticeService.setDelete(boardVO);
+		
+		return "redirect:./list";
+	}
+	
 
 }
