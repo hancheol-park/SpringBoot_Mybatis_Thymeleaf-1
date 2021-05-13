@@ -138,6 +138,10 @@ public class Pager {
 	}
 
 	public String getKind() {
+		if(this.kind==null) {
+			this.kind="Title";
+		}
+		
 		return kind;
 	}
 

@@ -51,6 +51,7 @@ public class NoticeController {
 	@GetMapping("insert")
 	public String setInsert(Model model)throws Exception{
 		model.addAttribute("vo", new BoardVO());
+		model.addAttribute("action", "insert");
 		return "board/form";
 	}
 	
@@ -65,6 +66,7 @@ public class NoticeController {
 	public String setUpdate(BoardVO boardVO, Model model)throws Exception{
 		boardVO = noticeService.getSelect(boardVO);
 		model.addAttribute("vo", boardVO);
+		model.addAttribute("action", "update");
 		return "board/form";
 		
 	}
