@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.AbstractView;
 
 //Custom View 생성
 //1. Abstract View 상속
-@Component
+@Component("down")
 // FileDown 참조변수명 = new FileDown();
 // 참조변수명.메서드명()
 // 클래스명의 첫글자를 소문자로 바꾼것이 참조변수명
