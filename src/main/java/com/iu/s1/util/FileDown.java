@@ -1,6 +1,8 @@
 package com.iu.s1.util;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.Map;
 
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.servlet.view.AbstractView;
 
 //Custom View 생성
@@ -50,11 +53,22 @@ public class FileDown extends AbstractView {
 		response.setContentLengthLong(file.length());
 		
 		//다운로드시 파일 이름을 인코딩 처리
-		fileName = URLEncoder.encode("file", "UTF-8");
+		fileName = URLEncoder.encode("file.jpeg", "UTF-8");
 		
 		//header 설정
 		response.setHeader("Content-Disposition", "attachment;filename=\""+fileName+"\"" );
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		
+		//HDD에서 파일을 읽고
+		FileInputStream fi = new FileInputStream(file);
+		
+		//Client로 전송 준비
+		OutputStream os = response.getOutputStream();
+		
+		//전송
+		FileCopyUtils.copy(fi, os);
+		
+		os.close();
+		fi.close();
 	}
 }
