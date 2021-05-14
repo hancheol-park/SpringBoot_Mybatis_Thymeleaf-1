@@ -33,9 +33,10 @@ public class NoticeController {
 	
 	// /notice/fileDown
 	@GetMapping("fileDown")
-	public ModelAndView fileDown(String fileName)throws Exception{
+	public ModelAndView fileDown(String fileName, String oriName)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("fileName", fileName);
+		mv.addObject("oriName", oriName);
 		mv.addObject("filePath", "/upload/notice/");
 		mv.setViewName("fileDown");
 		//  /fileDown.html
