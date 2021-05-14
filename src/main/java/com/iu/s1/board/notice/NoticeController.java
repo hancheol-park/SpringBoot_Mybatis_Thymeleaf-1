@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.s1.board.BoardFileVO;
 import com.iu.s1.board.BoardVO;
 import com.iu.s1.util.Pager;
 
@@ -30,6 +31,18 @@ public class NoticeController {
 		return "notice";
 	}
 	
+	// /notice/fileDown
+	@GetMapping("fileDown")
+	public ModelAndView fileDown(String fileName)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("fileName", fileName);
+		mv.addObject("filePath", "/upload/notice/");
+		mv.setViewName("fileDown");
+		//  /fileDown.html
+		return mv;
+	}
+	
+	// /notice/list
 	@GetMapping("list")
 	public String getList(Model model, Pager pager)throws Exception{
 		List<BoardVO> ar = noticeService.getList(pager);
@@ -37,6 +50,8 @@ public class NoticeController {
 		model.addAttribute("pager", pager);
 		System.out.println(pager.getStartNum());
 		System.out.println(pager.getLastNum());
+		
+		// /board/list.html
 		return "board/list";
 	}
 	
