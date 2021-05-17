@@ -63,9 +63,12 @@
 		      <th scope="row" th:text="${vo.num}"></th>
 		      				          <!--@{ |${board}select| } -->
 		      				          <!-- paramter 전송 @{URL주소(파라미터명=값, 파라미터명2=값2,...)}  -->
-		      <td>  
+		      <td th:if="${board != 'notice'}">  
 		      	<!-- th:if="${vo.depth != 0}" -->
-		      	<span th:if="${vo.depth} != 0" th:each="i : ${#numbers.sequence(1, vo.depth)}" >--</span>
+		      	<span th:if="${vo.depth != 0}" th:each="i : ${#numbers.sequence(1, vo.depth)}" >--</span>
+		      	<a href="#" th:href="@{select(num=${vo.num})}" th:text="${vo.title}">Mark</a>
+		      </td>
+		      <td th:unless="${board != 'notice'}">
 		      	<a href="#" th:href="@{select(num=${vo.num})}" th:text="${vo.title}">Mark</a>
 		      </td>
 		      <td th:text="${vo.writer}">Otto</td>
