@@ -1,5 +1,7 @@
 package com.iu.s1.member;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,29 @@ public class MemberController {
 	public String getLogin()throws Exception{
 		return "member/memberLogin";
 	}
+	
+	@PostMapping("login")
+	public String getLogin(MemberVO memberVO, HttpSession session)throws Exception{
+		
+		memberVO = memberService.getLogin(memberVO);
+		
+		//session.setAttribute("member", memberVO);
+		
+		if(memberVO != null) {
+			session.setAttribute("member", memberVO);
+		}
+		
+		
+		return "redirect:/";
+	}
+	
+	@GetMapping("logout")
+	public String logout(HttpSession session)throws Exception{
+		session.invalidate();
+		
+		return "redirect:../";
+	}
+	
 	
 	@GetMapping("join")
 	public String setJoin()throws Exception{
