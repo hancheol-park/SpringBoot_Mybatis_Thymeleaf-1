@@ -91,12 +91,12 @@
    			step > (select step from qna where num=#{num})
    		</update>
    		
-   		<insert id="setReplyInsert" parameterType="BoardVO">
+   		<insert id="setReplyInsert" parameterType="BoardVO" useGeneratedKeys="true" keyProperty="num">
    			insert into qna (title, writer, contents, ref, step, depth)
    			values (#{title}, #{writer}, #{contents}, 
-   				(select ref from qna where num=#{num}),
-   				(select step+1 from qna where num=#{num}),
-   				(select depth+1 from qna where num=#{num})
+   				(select ref from qna Q where num=#{num}),
+   				(select step+1 from qna Q where num=#{num}),
+   				(select depth+1 from qna Q where num=#{num})
    			 )
    		</insert>
    		
