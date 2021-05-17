@@ -78,6 +78,34 @@ public class QnaService implements BoardService{
 		return qnaMapper.setDelete(boardVO);
 	}
 	
+	@Transactional(rollbackFor = Exception.class)
+	public int setReplyInsert(BoardVO boardVO, MultipartFile [] files)throws Exception{
+		//boardVO.num = 부모의 글번호
+		
+		//1. step update
+		int result = qnaMapper.setReplyUpdate(boardVO);
+		
+		//2. reply insert
+		result = qnaMapper.setReplyInsert(boardVO);
+		
+		//3. File Hdd에 저장
+		String filePath= "upload/qna/";
+		
+		for(MultipartFile multipartFile:files) {
+			if(multipartFile.getSize()==0) {
+				continue;
+			}
+			String fileName= fileManager.save(multipartFile, filePath);
+			System.out.println(fileName);
+			BoardFileVO boardFileVO = new BoardFileVO();
+			boardFileVO.setFileName(fileName);
+			boardFileVO.setOriName(multipartFile.getOriginalFilename());
+			boardFileVO.setNum(boardVO.getNum());
+			qnaMapper.setFileInsert(boardFileVO);
+		}
+		return result;
+	}
+	
 	
 
 }
