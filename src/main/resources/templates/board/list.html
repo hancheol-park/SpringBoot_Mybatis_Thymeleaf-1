@@ -87,7 +87,7 @@
 		 </table> 
 		 <div th:if="${session.member != null}">
 		 	<a href="#" th:if="${board =='notice' and session.member.username=='admin'}"  class="btn btn-primary" th:href="@{./insert}">WRITE</a>
-		 	<a href="#" th:unless="${board =='notice' and session.member.username=='admin'}"  class="btn btn-primary" th:href="@{./insert}">WRITE</a>
+		 	<a href="#" th:if="${board !='notice'}"  class="btn btn-primary" th:href="@{./insert}">WRITE</a>
 		 </div>
 	</div>
 	
