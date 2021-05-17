@@ -32,8 +32,8 @@ public class QnaService implements BoardService{
 
 	@Override
 	public BoardVO getSelect(BoardVO boardVO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		qnaMapper.setHitUpdate(boardVO);
+		return qnaMapper.getSelect(boardVO);
 	}
 
 	@Override
@@ -66,13 +66,16 @@ public class QnaService implements BoardService{
 	@Override
 	public int setUpdate(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaMapper.setUpdate(boardVO);
 	}
 
 	@Override
 	public int setDelete(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		//1. files table의 fileName 조회
+		//2. qna table에서 글 삭제 
+		//3. HDD에 파일들을 삭제
+		return qnaMapper.setDelete(boardVO);
 	}
 	
 	
