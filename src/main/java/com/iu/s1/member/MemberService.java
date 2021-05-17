@@ -26,11 +26,11 @@ public class MemberService {
 			memberFileVO.setFileName(fileName);
 			memberFileVO.setOriName(multipartFile.getOriginalFilename());
 			memberFileVO.setUsername(memberVO.getUsername());
-			result = memberMapper
-		}
 		//3. MemberFiles table 저장
+			result = memberMapper.setJoinFile(memberFileVO);
+		}
 		
-		return memberMapper.setJoin(memberVO);
+		return result;
 	}
 	
 	public MemberVO getLogin(MemberVO memberVO)throws Exception{
