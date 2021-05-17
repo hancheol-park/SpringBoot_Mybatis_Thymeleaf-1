@@ -85,9 +85,10 @@
 		    </tr>
 		   </tbody>
 		 </table> 
-		 
-		 <a href="#" class="btn btn-primary" th:href="@{./fileDown}">FileDown</a>
-		 <a href="#" class="btn btn-primary" th:href="@{./insert}">WRITE</a>
+		 <div th:if="${session.member != null}">
+		 	<a href="#" th:if="${board =='notice' and session.member.username=='admin'}"  class="btn btn-primary" th:href="@{./insert}">WRITE</a>
+		 	<a href="#" th:unless="${board =='notice' and session.member.username=='admin'}"  class="btn btn-primary" th:href="@{./insert}">WRITE</a>
+		 </div>
 	</div>
 	
 	<div class="container d-flex justify-content-center">
@@ -102,7 +103,7 @@
 		  		<span th:unless="${pager.pre}" class="page-link">Previous</span>
 		  	</li>
 		    <li class="page-item" th:each="i : ${#numbers.sequence(pager.startNum, pager.lastNum)}"><a class="page-link pager" href="#" th:text="${i}" th:title="${i}">Previous</a></li>
-		    <li th:if="${pager.next}" class="page-item"><a class="page-link" href="#" th:title="${pager.lastNum+1}" th>Next</a></li>
+		    <li th:if="${pager.next}" class="page-item"><a class="page-link" href="#" th:title="${pager.lastNum+1}" >Next</a></li>
 		  </ul>
 	</div>
 	
