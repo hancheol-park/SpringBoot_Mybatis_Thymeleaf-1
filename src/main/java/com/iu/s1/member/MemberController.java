@@ -23,7 +23,7 @@ public class MemberController {
 		return "member/memberJoin";
 	}
 	@PostMapping("join")
-	public String setJoin(MemberVO memberVO, MultipartFile [] avatar)throws Exception{
+	public String setJoin(MemberVO memberVO, MultipartFile avatar)throws Exception{
 		int result = memberService.setJoin(memberVO, avatar);
 		
 		return "redirect:../";
